@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    String[] s_picArray = {"http://d040779c2cd49.scdn.itc.cn/s_w_z/pic/20161213/184474627873966848.jpg",
-            "http://d040779c2cd49.scdn.itc.cn/s_w_z/pic/20161213/184474627999795968.jpg",
+    String[] s_picArray = {"https://c1c2133e2cc13.cdn.sohucs.com/s_h_z/pic/20161227/189409970494645120",
+            "https://c1c2133e2cc13.cdn.sohucs.com/s_h_z/pic/20161227/189409971035710336",
             "http://d040779c2cd49.scdn.itc.cn/s_w_z/pic/20161213/184474628071099136.jpg"
     };
-    String[] b_picArray = {"http://d040779c2cd49.scdn.itc.cn/s_big/pic/20161213/184474627873966848.jpg",
-            "http://d040779c2cd49.scdn.itc.cn/s_big/pic/20161213/184474627999795968.jpg",
+    String[] b_picArray = {"https://c1c2133e2cc13.cdn.sohucs.com/s_big/pic/20161227/189409970494645120",
+            "https://c1c2133e2cc13.cdn.sohucs.com/s_big/pic/20161227/189409971035710336",
             "http://d040779c2cd49.scdn.itc.cn/s_big/pic/20161213/184474628071099136.jpg"
     };
 
