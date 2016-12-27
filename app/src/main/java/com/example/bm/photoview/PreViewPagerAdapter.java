@@ -101,10 +101,6 @@ public class PreViewPagerAdapter extends PagerAdapter {
          */
         // 小图
         mSmallImageView.setImageDrawable(photoData.s_Drawable.getConstantState().newDrawable());
-        if (needAnima) {
-            mSmallImageView.startAnimaFrom(imageInfo);
-        }
-
 
         // 大图
         final long loadStartTime = System.currentTimeMillis();
