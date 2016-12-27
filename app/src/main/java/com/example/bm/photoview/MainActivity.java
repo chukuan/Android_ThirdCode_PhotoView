@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO
-                startViewPagerActivity(0);
+                onImageClick(0);
             }
         });
         //
@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO
-                startViewPagerActivity(1);
+                onImageClick(1);
             }
         });
         //
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO
-                startViewPagerActivity(2);
+                onImageClick(2);
             }
         });
 
@@ -97,38 +97,54 @@ public class MainActivity extends Activity {
     }
 
 
-    /**
-     * @param position
-     */
-    private void startViewPagerActivity(int position) {
+    private void onImageClick(int position) {
 
         //------屏幕位置数据------
-        PreViewPagerActivity.mImageInfo.clear();
-        PreViewPagerActivity.mImageInfo.add(mPhotoImageView01.getImageInfo());
-        PreViewPagerActivity.mImageInfo.add(mPhotoImageView02.getImageInfo());
-        PreViewPagerActivity.mImageInfo.add(mPhotoImageView03.getImageInfo());
+        ArrayList<PhotoImageView.ImageInfo> mImageLocList = new ArrayList<PhotoImageView.ImageInfo>();
+        mImageLocList.add(mPhotoImageView01.getImageInfo());
+        mImageLocList.add(mPhotoImageView02.getImageInfo());
+        mImageLocList.add(mPhotoImageView03.getImageInfo());
         //------URL数据------
-        // ------初始化数据-------
-        ArrayList<PhotoUrlData> mPhotoDataList = new ArrayList<PhotoUrlData>();
-        for (int i = 0; i < s_PhotoList.size(); i++) {
-            PhotoUrlData photoData = new PhotoUrlData();
-            // ---Url数据---
+        ArrayList<ImageUrlData> mPhotoDataList = new ArrayList<ImageUrlData>();
+        // url
+        for (int i = 0; i < mImageLocList.size(); i++) {
+            ImageUrlData photoData = new ImageUrlData();
             photoData.b_Url = b_picArray[i];
-            //
             mPhotoDataList.add(photoData);
         }
-
-
+        // drawable
         mPhotoDataList.get(0).s_Drawable = mPhotoImageView01.getDrawable();
         mPhotoDataList.get(1).s_Drawable = mPhotoImageView02.getDrawable();
         mPhotoDataList.get(2).s_Drawable = mPhotoImageView03.getDrawable();
 
-
-        // 设置图片数据
-        PreViewPagerActivity.mPhotoUrlDataList.clear();
-        PreViewPagerActivity.mPhotoUrlDataList.addAll(mPhotoDataList);
-
         //
+        startViewPagerActivity(position, mPhotoDataList, mImageLocList);
+    }
+
+
+    /**
+     * @param position
+     * @param imageUrlList url
+     * @param imageLocList location
+     */
+    private void startViewPagerActivity(int position, ArrayList<ImageUrlData> imageUrlList, ArrayList<PhotoImageView.ImageInfo> imageLocList) {
+        // 判断
+        if (imageUrlList == null || imageUrlList.size() == 0) {
+            return;
+        }
+        if (imageLocList == null || imageLocList.size() == 0) {
+            return;
+        }
+        if (imageUrlList.size() != imageLocList.size()) {
+            return;
+        }
+        //------图片Url数据------
+        PreViewPagerActivity.mImageUrlList.clear();
+        PreViewPagerActivity.mImageUrlList.addAll(imageUrlList);
+        //------图片loc数据------
+        PreViewPagerActivity.mImageLocList.clear();
+        PreViewPagerActivity.mImageLocList.addAll(imageLocList);
+        // --------position-------
         Intent intent = new Intent(MainActivity.this, PreViewPagerActivity.class);
         intent.putExtra("selectPosition", position);
         MainActivity.this.startActivity(intent);

@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 /**
  * 图片数据model
  */
-public class PhotoUrlData {
+public class ImageUrlData {
 
     // 小图Drawable
     public Drawable s_Drawable;

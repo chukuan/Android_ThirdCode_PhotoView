@@ -27,13 +27,13 @@ public class PreViewPagerAdapter extends PagerAdapter {
      * 数据(数据在退出时，清空)
      */
     // URL数据
-    public ArrayList<PhotoUrlData> mPhotoUrlDataList = new ArrayList<PhotoUrlData>();
+    public ArrayList<ImageUrlData> mPhotoUrlDataList = new ArrayList<ImageUrlData>();
     // 屏幕位置数据
     public ArrayList<PhotoImageView.ImageInfo> mImageInfo = new ArrayList<PhotoImageView.ImageInfo>();
 
     private int mInitPosition = 0;
 
-    public PreViewPagerAdapter(Context context, ArrayList<PhotoUrlData> mPhotoUrlDataList, ArrayList<PhotoImageView.ImageInfo> mImageInfo, int position) {
+    public PreViewPagerAdapter(Context context, ArrayList<ImageUrlData> mPhotoUrlDataList, ArrayList<PhotoImageView.ImageInfo> mImageInfo, int position) {
         this.mContext = context;
         this.mInitPosition = position;
 
@@ -93,7 +93,7 @@ public class PreViewPagerAdapter extends PagerAdapter {
         /**
          * 1、数据
          */
-        final PhotoUrlData photoData = mPhotoUrlDataList.get(position);
+        final ImageUrlData photoData = mPhotoUrlDataList.get(position);
         final PhotoImageView.ImageInfo imageInfo = mImageInfo.get(position);
 
         /**

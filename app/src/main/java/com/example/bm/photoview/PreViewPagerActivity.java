@@ -29,9 +29,9 @@ public class PreViewPagerActivity extends Activity {
      * 数据(数据在退出时，清空)
      */
     // URL数据
-    public static ArrayList<PhotoUrlData> mPhotoUrlDataList = new ArrayList<PhotoUrlData>();
+    public static ArrayList<ImageUrlData> mImageUrlList = new ArrayList<ImageUrlData>();
     // 屏幕位置数据
-    public static ArrayList<PhotoImageView.ImageInfo> mImageInfo = new ArrayList<PhotoImageView.ImageInfo>();
+    public static ArrayList<PhotoImageView.ImageInfo> mImageLocList = new ArrayList<PhotoImageView.ImageInfo>();
 
 
     /**
@@ -61,7 +61,7 @@ public class PreViewPagerActivity extends Activity {
 
         // ViewPager
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPreViewPagerAdapter = new PreViewPagerAdapter(this, mPhotoUrlDataList, mImageInfo, mSelectPosition);
+        mPreViewPagerAdapter = new PreViewPagerAdapter(this, mImageUrlList, mImageLocList, mSelectPosition);
         mPager.setAdapter(mPreViewPagerAdapter);
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -88,8 +88,8 @@ public class PreViewPagerActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPhotoUrlDataList.clear();
-        mImageInfo.clear();
+        mImageUrlList.clear();
+        mImageLocList.clear();
     }
 
     @Override
@@ -113,6 +113,7 @@ public class PreViewPagerActivity extends Activity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (flag == false) {
+            // 开启放大动画
             startZoomInAnim();
             flag = true;
         }
@@ -126,6 +127,7 @@ public class PreViewPagerActivity extends Activity {
         set.setDuration(300);
         set.setInterpolator(new DecelerateInterpolator());
         set.start();
+        //-------Scale动画在ViewPager的Adapter中--------
     }
 
     public void startZoomOutAnim() {
@@ -162,8 +164,8 @@ public class PreViewPagerActivity extends Activity {
         /**
          * 1、数据
          */
-        final PhotoUrlData photoData = mPhotoUrlDataList.get(position);
-        final PhotoImageView.ImageInfo imageInfo = mImageInfo.get(position);
+        final ImageUrlData photoData = mImageUrlList.get(position);
+        final PhotoImageView.ImageInfo imageInfo = mImageLocList.get(position);
 
         mBigImageView.startAnimaTo(imageInfo, new PhotoImageView.OnPhotoAnimaListener() {
             @Override
