@@ -7,6 +7,7 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -1233,7 +1234,7 @@ public class PhotoImageView extends ImageView {
     public static class ImageInfo {
         // Drawable在整个窗口的位置(left top right bottom)
         RectF iDrawableLocalOnScreenR = new RectF();
-        // Drawable的宽高(0 0 width height)
+        // Drawable的相对于ImageView上的位置
         RectF iDrawableRect = new RectF();
         // ImageView的宽高(0 0 width height)
         RectF iViewRect = new RectF();
@@ -1244,7 +1245,7 @@ public class PhotoImageView extends ImageView {
          * 构造方法(缩放ImageView的信息)
          *
          * @param drawableLocalOnScreenR Drawable在整个窗口的位置(left top right bottom)
-         * @param drawableRectF          ImageView的宽高(0 0 width height)
+         * @param drawableRectF          Drawable的相对于ImageView的位置
          * @param viewRectF              ImageView的宽高(0 0 width height)
          * @param scaleType              ImageView的scaleType
          */
@@ -1253,6 +1254,13 @@ public class PhotoImageView extends ImageView {
             this.iDrawableRect.set(drawableRectF);
             this.iViewRect.set(viewRectF);
             this.iScaleType = scaleType;
+
+            Log.d("xiaxl: ", "---ImageInfo---");
+            Log.d("xiaxl: ", "iDrawableLocalOnScreenR: " + iDrawableLocalOnScreenR);
+            Log.d("xiaxl: ", "iDrawableRect: " + iDrawableRect);
+            Log.d("xiaxl: ", "iViewRect: " + iViewRect);
+
+
         }
     }
 

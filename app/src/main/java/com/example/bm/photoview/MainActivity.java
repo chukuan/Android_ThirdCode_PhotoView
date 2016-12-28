@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.bm.photoview.widget.PhotoImageInfoUtil;
 import com.example.bm.photoview.widget.PhotoImageView;
 
 import java.util.ArrayList;
@@ -27,9 +29,9 @@ public class MainActivity extends Activity {
     ArrayList<String> b_PhotoList = new ArrayList<String>();
 
 
-    PhotoImageView mPhotoImageView01 = null;
-    PhotoImageView mPhotoImageView02 = null;
-    PhotoImageView mPhotoImageView03 = null;
+    ImageView mPhotoImageView01 = null;
+    ImageView mPhotoImageView02 = null;
+    ImageView mPhotoImageView03 = null;
 
 
     @Override
@@ -63,7 +65,7 @@ public class MainActivity extends Activity {
      */
     private void initUI() {
         //
-        mPhotoImageView01 = (PhotoImageView) findViewById(R.id.imageView01);
+        mPhotoImageView01 = (ImageView) findViewById(R.id.imageView01);
         mPhotoImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
             }
         });
         //
-        mPhotoImageView02 = (PhotoImageView) findViewById(R.id.imageView02);
+        mPhotoImageView02 = (ImageView) findViewById(R.id.imageView02);
         mPhotoImageView02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +83,7 @@ public class MainActivity extends Activity {
             }
         });
         //
-        mPhotoImageView03 = (PhotoImageView) findViewById(R.id.imageView03);
+        mPhotoImageView03 = (ImageView) findViewById(R.id.imageView03);
         mPhotoImageView03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,9 +103,9 @@ public class MainActivity extends Activity {
 
         //------屏幕位置数据------
         ArrayList<PhotoImageView.ImageInfo> mImageLocList = new ArrayList<PhotoImageView.ImageInfo>();
-        mImageLocList.add(mPhotoImageView01.getImageInfo());
-        mImageLocList.add(mPhotoImageView02.getImageInfo());
-        mImageLocList.add(mPhotoImageView03.getImageInfo());
+        mImageLocList.add(PhotoImageInfoUtil.getImageInfo(mPhotoImageView01));
+        mImageLocList.add(PhotoImageInfoUtil.getImageInfo(mPhotoImageView02));
+        mImageLocList.add(PhotoImageInfoUtil.getImageInfo(mPhotoImageView03));
         //------URL数据------
         ArrayList<ImageUrlData> mPhotoDataList = new ArrayList<ImageUrlData>();
         // url
