@@ -2,6 +2,7 @@ package com.example.bm.photoview;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,7 @@ public class PreViewPagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
+
     private void zoomInImage(final int position, final PhotoImageView mSmallImageView, final PhotoImageView mBigImageView, final boolean needAnima) {
 
         /**
@@ -100,10 +102,24 @@ public class PreViewPagerAdapter extends PagerAdapter {
          * 2、加载mScaleImageView的小图
          */
         // 小图
-        mSmallImageView.setImageDrawable(photoData.s_Drawable.getConstantState().newDrawable());
-
+        if (TextUtils.isEmpty(photoData.s_Url) == false) {
+            Glide.with(mContext).load(photoData.s_Url).diskCacheStrategy(DiskCacheStrategy.ALL).dontAnimate().into(mSmallImageView);
+        } else if (photoData.s_Drawable != null) {
+            mSmallImageView.setImageDrawable(photoData.s_Drawable.getConstantState().newDrawable());
+        }
+        if (needAnima) {
+            mBigImageView.setVisibility(View.GONE);
+            mSmallImageView.startAnimaFrom(imageInfo, new PhotoImageView.OnPhotoAnimaListener() {
+                @Override
+                public void onAnimaFinish() {
+                    mBigImageView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+        /**
+         * 3、加载mScaleImageView的大图
+         */
         // 大图
-        final long loadStartTime = System.currentTimeMillis();
         Glide.with(mContext).load(photoData.b_Url).diskCacheStrategy(DiskCacheStrategy.ALL).dontAnimate().listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -112,15 +128,8 @@ public class PreViewPagerAdapter extends PagerAdapter {
 
             @Override
             public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                // 小图隐藏
                 mSmallImageView.setVisibility(View.GONE);
-                // 没有快速加载出来，算是网络下载图片
-                if (needAnima) {
-                    if ((System.currentTimeMillis() - loadStartTime) >= 120) {
-                        mBigImageView.startAnimaFrom(mSmallImageView.getImageInfo());
-                    } else {
-                        mBigImageView.startAnimaFrom(imageInfo);
-                    }
-                }
                 return false;
             }
         }).dontTransform().into(mBigImageView);

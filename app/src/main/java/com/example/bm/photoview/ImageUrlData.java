@@ -9,6 +9,8 @@ public class ImageUrlData {
 
     // 小图Drawable
     public Drawable s_Drawable;
+    // 小图地址
+    public String s_Url;
     // 大图地址
     public String b_Url;
 }

@@ -112,13 +112,9 @@ public class MainActivity extends Activity {
         for (int i = 0; i < mImageLocList.size(); i++) {
             ImageUrlData photoData = new ImageUrlData();
             photoData.b_Url = b_picArray[i];
+            photoData.s_Url = s_picArray[i];
             mPhotoDataList.add(photoData);
         }
-        // drawable
-        mPhotoDataList.get(0).s_Drawable = mPhotoImageView01.getDrawable();
-        mPhotoDataList.get(1).s_Drawable = mPhotoImageView02.getDrawable();
-        mPhotoDataList.get(2).s_Drawable = mPhotoImageView03.getDrawable();
-
         //
         startViewPagerActivity(position, mPhotoDataList, mImageLocList);
     }
