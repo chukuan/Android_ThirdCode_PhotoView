@@ -35,7 +35,8 @@ public class PhotoImageInfoUtil {
         RectF iDrawableLocalOnScreenR = new RectF();
         // 获取在屏幕上的位置
         int[] location = new int[2];
-        getLocation(imageView, location);
+        //getLocation(imageView, location);
+        imageView.getLocationOnScreen(location);
         iDrawableLocalOnScreenR.set(location[0] + iDrawableRect.left, location[1] + iDrawableRect.top,
                 location[0] + iDrawableRect.right, location[1] + iDrawableRect.bottom);
         // ImageView的scaleType
