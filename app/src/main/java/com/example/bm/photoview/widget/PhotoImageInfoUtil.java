@@ -2,6 +2,7 @@ package com.example.bm.photoview.widget;
 
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.ImageView;
@@ -11,7 +12,8 @@ import android.widget.ImageView;
  */
 public class PhotoImageInfoUtil {
 
-
+    // api 21以上隐藏状态栏
+    public static final int HIDE_STATE_BAR = 21;
     /**
      * 获取当前ImageView的位置信息
      *
@@ -35,8 +37,13 @@ public class PhotoImageInfoUtil {
         RectF iDrawableLocalOnScreenR = new RectF();
         // 获取在屏幕上的位置
         int[] location = new int[2];
-        //getLocation(imageView, location);
-        imageView.getLocationOnScreen(location);
+        // 5.0以下
+        if (Build.VERSION.SDK_INT < HIDE_STATE_BAR) {
+            getLocation(imageView, location);
+        } else {
+            // 5.0以上
+            imageView.getLocationOnScreen(location);
+        }
         iDrawableLocalOnScreenR.set(location[0] + iDrawableRect.left, location[1] + iDrawableRect.top,
                 location[0] + iDrawableRect.right, location[1] + iDrawableRect.bottom);
         // ImageView的scaleType

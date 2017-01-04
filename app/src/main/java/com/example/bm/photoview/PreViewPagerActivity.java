@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 
+import com.example.bm.photoview.widget.PhotoImageInfoUtil;
 import com.example.bm.photoview.widget.PhotoImageView;
 
 import java.util.ArrayList;
@@ -188,26 +189,31 @@ public class PreViewPagerActivity extends Activity {
     }
 
 
-    //------------------4.4以上更改状态栏颜色-------------------
+    //------------------5.0以上更改状态栏-------------------
     protected void setImmersiveStatusBar() {
         // http://www.jianshu.com/p/11a2b780fd9b
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= PhotoImageInfoUtil.HIDE_STATE_BAR) {
             Window window = getWindow();
             window.getDecorView().setSystemUiVisibility(
+                    // 保持整个View稳定, 使View不会因为System UI的变化而重新layout API 16
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            // 视图延伸至状态栏区域，状态栏上浮于视图之上 API 16
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            // 状态栏隐藏，效果同设置WindowManager.LayoutParams.FLAG_FULLSCREEN API 16
                             | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                            // API 19
                             | View.SYSTEM_UI_FLAG_IMMERSIVE);
         }
     }
 
 
     private void showSystemUI() {
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= PhotoImageInfoUtil.HIDE_STATE_BAR) {
             Window window = getWindow();
             window.getDecorView().setSystemUiVisibility(
+                    // 保持整个View稳定, 使View不会因为System UI的变化而重新layout API 16
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            // 视图延伸至状态栏区域，状态栏上浮于视图之上 API 16
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
     }
