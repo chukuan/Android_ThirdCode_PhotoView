@@ -1147,6 +1147,12 @@ public class PhotoImageView extends ImageView {
 
             this.mZoomOutListener = zoomOutListener;
             mTransformRunable.start();
+        }else{
+            this.mZoomOutListener = zoomOutListener;
+            if (mZoomOutListener != null) {
+                mZoomOutListener.onAnimaFinish();
+                mZoomOutListener = null;
+            }
         }
     }
 
