@@ -3,13 +3,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <com.example.bm.photoview.widget.PhotoImageView
         android:id="@+id/imageView01"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:scaleType="centerCrop" />
 
-    <ImageView
+    <com.example.bm.photoview.widget.PhotoImageView
         android:id="@+id/imageView02"
         android:layout_width="180dp"
         android:layout_height="180dp"

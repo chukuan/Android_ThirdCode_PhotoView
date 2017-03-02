@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    String[] s_picArray = {"https://c1c2133e2cc13.cdn.sohucs.com/s_h_z/pic/20161227/189409970494645120",
+    String[] s_picArray = {"https://c1c2133e2cc13.cdn.sohucs.com/s_2_w_z/pic/20170227/211882161660241280",
             "https://c1c2133e2cc13.cdn.sohucs.com/s_h_z/pic/20161227/189409971035710336",
             "http://d040779c2cd49.scdn.itc.cn/s_w_z/pic/20161213/184474628071099136.jpg"
     };
-    String[] b_picArray = {"https://c1c2133e2cc13.cdn.sohucs.com/s_big/pic/20161227/189409970494645120",
+    String[] b_picArray = {"https://c1c2133e2cc13.cdn.sohucs.com/s_big/pic/20170227/211882161660241280",
             "https://c1c2133e2cc13.cdn.sohucs.com/s_big/pic/20161227/189409971035710336",
             "http://d040779c2cd49.scdn.itc.cn/s_big/pic/20161213/184474628071099136.jpg"
     };
@@ -29,8 +29,8 @@ public class MainActivity extends Activity {
     ArrayList<String> b_PhotoList = new ArrayList<String>();
 
 
-    ImageView mPhotoImageView01 = null;
-    ImageView mPhotoImageView02 = null;
+    PhotoImageView mPhotoImageView01 = null;
+    PhotoImageView mPhotoImageView02 = null;
     ImageView mPhotoImageView03 = null;
 
 
@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
      */
     private void initUI() {
         //
-        mPhotoImageView01 = (ImageView) findViewById(R.id.imageView01);
+        mPhotoImageView01 = (PhotoImageView) findViewById(R.id.imageView01);
         mPhotoImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
             }
         });
         //
-        mPhotoImageView02 = (ImageView) findViewById(R.id.imageView02);
+        mPhotoImageView02 = (PhotoImageView) findViewById(R.id.imageView02);
         mPhotoImageView02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,8 +103,8 @@ public class MainActivity extends Activity {
 
         //------屏幕位置数据------
         ArrayList<PhotoImageView.ImageInfo> mImageLocList = new ArrayList<PhotoImageView.ImageInfo>();
-        mImageLocList.add(PhotoImageInfoUtil.getImageInfo(mPhotoImageView01));
-        mImageLocList.add(PhotoImageInfoUtil.getImageInfo(mPhotoImageView02));
+        mImageLocList.add(mPhotoImageView01.getImageInfo());
+        mImageLocList.add(mPhotoImageView02.getImageInfo());
         mImageLocList.add(PhotoImageInfoUtil.getImageInfo(mPhotoImageView03));
         //------URL数据------
         ArrayList<ImageUrlData> mPhotoDataList = new ArrayList<ImageUrlData>();

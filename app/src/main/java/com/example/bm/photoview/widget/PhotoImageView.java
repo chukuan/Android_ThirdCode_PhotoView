@@ -6,6 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -1147,7 +1148,7 @@ public class PhotoImageView extends ImageView {
 
             this.mZoomOutListener = zoomOutListener;
             mTransformRunable.start();
-        }else{
+        } else {
             this.mZoomOutListener = zoomOutListener;
             if (mZoomOutListener != null) {
                 mZoomOutListener.onAnimaFinish();
@@ -1196,7 +1197,13 @@ public class PhotoImageView extends ImageView {
     public ImageInfo getImageInfo() {
         // 获取在屏幕上的位置
         int[] location = new int[2];
-        getLocation(location);
+        // 5.0以下
+        if (Build.VERSION.SDK_INT < PhotoImageInfoUtil.HIDE_STATE_BAR) {
+            getLocation(location);
+        } else {
+            // 5.0以上
+            this.getLocationOnScreen(location);
+        }
         //---------------Drawable在整个窗口上的View---------------
         RectF drawableLocalOnScreenR = new RectF();
         drawableLocalOnScreenR.set(location[0] + mDrawableRect.left, location[1] + mDrawableRect.top,
